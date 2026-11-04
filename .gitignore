@@ -1,0 +1,14 @@
+# credentials
+config.env
+.env
+
+# run state written on the box
+runs/
+output/
+logs/
+
+# python
+__pycache__/
+*.pyc
+venv/
+.venv/

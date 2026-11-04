@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>MS Download → Upload Alerts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/dashboard.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <p class="eyebrow">Netskope · Data protection</p>
+      <h1>MS Download → Upload Alerts</h1>
+      <p class="lede">Files a user downloaded from OneDrive, SharePoint, Teams or Outlook and then
+        uploaded to an outside app within the hours window — one alert per upload. Run any
+        range here, or schedule a daily run for yesterday.</p>
+    </header>
+
+    <section class="status-row" aria-label="Status">
+      <div class="panel status">
+        <h2>Credentials</h2>
+        <p class="value" id="cfg-value">…</p>
+        <p class="sub" id="cfg-sub"></p>
+      </div>
+      <div class="panel status">
+        <h2>Daily run</h2>
+        <p class="value" id="sched-value">…</p>
+        <p class="sub" id="sched-sub"></p>
+      </div>
+      <div class="panel status">
+        <h2>Now</h2>
+        <p class="value" id="now-value" aria-live="polite">…</p>
+        <p class="sub" id="now-sub"></p>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="run-h">
+      <h2 id="run-h">Run now</h2>
+      <form id="run-form" novalidate>
+        <div class="fields">
+          <label>From <input type="date" id="f-start" required /></label>
+          <label>To <input type="date" id="f-end" required /></label>
+          <label>Hours window <input type="number" id="f-hours" min="0" step="1" /></label>
+        </div>
+        <fieldset class="acts">
+          <legend>UBA alert activities that put a user in scope</legend>
+          <div id="f-acts"></div>
+        </fieldset>
+        <div class="form-foot">
+          <button type="submit" id="run-btn" class="btn primary">Run</button>
+          <p class="hint" id="form-msg" role="status"></p>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" id="results" aria-labelledby="res-h" hidden>
+      <div class="res-head">
+        <div>
+          <h2 id="res-h">Results</h2>
+          <p class="sub" id="res-sub"></p>
+        </div>
+        <a class="btn" id="dl-btn" href="#" hidden>Download Excel</a>
+      </div>
+      <p class="error" id="res-error" hidden></p>
+      <div class="kpis" id="kpis"></div>
+      <div class="table-head">
+        <h3>Alerts</h3>
+        <input type="search" id="alert-filter" placeholder="Filter alerts…" aria-label="Filter alerts" />
+      </div>
+      <p class="sub" id="alerts-note"></p>
+      <div class="table-wrap"><table id="alerts-table"></table></div>
+      <details id="bulk-box">
+        <summary id="bulk-sum">UBA 300+ Files</summary>
+        <div class="table-wrap"><table id="bulk-table"></table></div>
+      </details>
+      <details id="log-box">
+        <summary>Run log</summary>
+        <pre id="log"></pre>
+        <a id="log-full" href="#" target="_blank" rel="noopener">Open the full log</a>
+      </details>
+    </section>
+
+    <section class="panel" aria-labelledby="hist-h">
+      <h2 id="hist-h">History</h2>
+      <p class="sub" id="hist-sub"></p>
+      <div class="table-wrap"><table id="hist-table"></table></div>
+    </section>
+  </div>
+  <script src="static/dashboard.js"></script>
+</body>
+</html>
